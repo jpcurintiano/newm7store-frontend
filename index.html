@@ -4,30 +4,30 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#000000">
-<meta name="description" content="Todos os streamings por R$29,90 com login único e individual. Mais de 12 mil clientes no Brasil todo.">
+<meta name="description" content="Escolha seus streamings por R$10,00 cada, com login único e individual. Mais de 12 mil clientes no Brasil todo.">
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:site_name" content="M7 STORE">
-<meta property="og:title" content="M7 STORE | Todos os Streamings por R$29,90">
-<meta property="og:description" content="Login único e individual. Mais de 12 mil clientes no Brasil todo. Avaliação 4.9.">
+<meta property="og:title" content="M7 STORE | Streamings por R$10,00 cada">
+<meta property="og:description" content="Escolha os streamings desejados. Login único e individual. Mais de 12 mil clientes no Brasil todo. Avaliação 4.9.">
 <meta property="og:url" content="https://m7store.vercel.app/">
 <meta property="og:image" content="https://m7store.vercel.app/preview.png">
 <meta property="og:image:secure_url" content="https://m7store.vercel.app/preview.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="M7 STORE - Todos os Streamings por R$29,90">
+<meta property="og:image:alt" content="M7 STORE - Streamings por R$10,00 cada">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="M7 STORE | Todos os Streamings por R$29,90">
-<meta name="twitter:description" content="Login único e individual. Mais de 12 mil clientes no Brasil todo. Avaliação 4.9.">
+<meta name="twitter:title" content="M7 STORE | Streamings por R$10,00 cada">
+<meta name="twitter:description" content="Escolha os streamings desejados. Login único e individual. Mais de 12 mil clientes no Brasil todo. Avaliação 4.9.">
 <meta name="twitter:image" content="https://m7store.vercel.app/preview.png">
 
 <link rel="icon" type="image/png" href="topo.png">
 <link rel="apple-touch-icon" href="logo.png">
 
-<title>M7 STORE | Todos os Streamings por R$29,90</title>
+<title>M7 STORE | Streamings por R$10,00 cada</title>
 
 <style>
 :root {
@@ -307,21 +307,123 @@ h1 {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 8px;
-  list-style: none;
 }
 
-.service {
-  min-height: 34px;
+.service-option {
+  position: relative;
+  min-height: 58px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 7px;
+  gap: 8px;
+  padding: 8px;
   border: 1px solid rgba(212, 175, 55, 0.36);
   border-radius: 8px;
   background: var(--panel-2);
   color: #fff;
-  font-size: 13px;
-  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease;
+}
+
+.service-option:hover {
+  border-color: rgba(255, 243, 176, 0.72);
+  background: #1b1b1b;
+}
+
+.service-option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.service-icon {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border: 1px solid rgba(212, 175, 55, 0.42);
+  border-radius: 50%;
+  color: var(--gold-light);
+  background: #080808;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.service-name {
+  display: block;
+  color: #fff;
+  font-size: 12px;
+  line-height: 1.1;
+  font-weight: 800;
+}
+
+.service-price {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.1;
+}
+
+.service-option:has(input:checked),
+.service-option.is-selected {
+  border-color: var(--gold-light);
+  background: rgba(212, 175, 55, 0.13);
+  box-shadow: inset 0 0 0 1px rgba(255, 243, 176, 0.18);
+}
+
+.service-option:has(input:checked) .service-icon,
+.service-option.is-selected .service-icon {
+  color: #111;
+  background: linear-gradient(135deg, #d4af37, #fff3b0);
+  border-color: var(--gold-light);
+}
+
+.selection-hint {
+  margin-top: 9px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.checkout-summary {
+  display: grid;
+  gap: 7px;
+  margin: 0 0 14px;
+  padding: 12px;
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  border-radius: 12px;
+  background: var(--panel-2);
+}
+
+.summary-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.summary-row strong {
+  color: #fff;
+}
+
+.summary-total {
+  color: var(--gold-light);
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.selected-list {
+  min-height: 18px;
+  color: #f1f1f1;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.selected-list.empty {
+  color: #ffdfdf;
 }
 
 .streaming-showcase {
@@ -845,9 +947,8 @@ input[type="email"]:focus {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .service {
-    min-height: 31px;
-    font-size: 12px;
+  .service-option {
+    min-height: 54px;
   }
 
   .streaming-showcase {
@@ -920,10 +1021,10 @@ input[type="email"]:focus {
     <section class="hero" aria-label="Oferta principal">
       <div class="card offer">
         <p class="eyebrow">Pacote digital mensal</p>
-        <h1>Todos os streamings por apenas R$29,90</h1>
+        <h1>Escolha seus streamings por R$10,00 cada</h1>
 
         <p class="lead">
-          Pare de pagar caro em vários serviços. Receba acesso com login único e individual, informe seu e-mail, finalize pelo PIX e acompanhe o recebimento das instruções.
+          Selecione os streamings que deseja, confirme os termos, informe seu e-mail e finalize o pagamento via PIX.
         </p>
 
         <div class="trust-row">
@@ -949,28 +1050,108 @@ input[type="email"]:focus {
         </div>
 
         <div class="price-row" aria-label="Valor da oferta">
-          <strong class="price">R$29,90</strong>
-          <span class="period">Válido por 31 dias</span>
+          <strong class="price" id="totalPrecoHero">R$0,00</strong>
+          <span class="period">R$10,00 por streaming</span>
         </div>
 
         <p class="microcopy">
-          Oferta digital mensal. A disponibilidade pode variar conforme confirmação do pagamento e orientações enviadas ao comprador.
+          O total é calculado automaticamente conforme os streamings selecionados. Escolha pelo menos um produto para continuar.
         </p>
 
         <div class="section">
-          <p class="section-title">Itens inclusos no pacote</p>
-          <ul class="services">
-            <li class="service">Netflix</li>
-            <li class="service">HBO Max</li>
-            <li class="service">Disney+</li>
-            <li class="service">Prime Video</li>
-            <li class="service">Paramount+</li>
-            <li class="service">Globoplay</li>
-            <li class="service">Premiere</li>
-            <li class="service">Sportv</li>
-            <li class="service">ESPN</li>
-            <li class="service">Apple TV</li>
-          </ul>
+          <p class="section-title">Escolha os streamings disponíveis</p>
+          <div class="services" id="listaStreamings" role="group" aria-label="Escolha os streamings">
+            <label class="service-option">
+              <input type="checkbox" class="streaming-check" value="Netflix" data-price="10">
+              <span class="service-icon">N</span>
+              <span>
+                <span class="service-name">Netflix</span>
+                <span class="service-price">R$10,00</span>
+              </span>
+            </label>
+
+            <label class="service-option">
+              <input type="checkbox" class="streaming-check" value="HBO Max" data-price="10">
+              <span class="service-icon">H</span>
+              <span>
+                <span class="service-name">HBO Max</span>
+                <span class="service-price">R$10,00</span>
+              </span>
+            </label>
+
+            <label class="service-option">
+              <input type="checkbox" class="streaming-check" value="Disney+" data-price="10">
+              <span class="service-icon">D</span>
+              <span>
+                <span class="service-name">Disney+</span>
+                <span class="service-price">R$10,00</span>
+              </span>
+            </label>
+
+            <label class="service-option">
+              <input type="checkbox" class="streaming-check" value="Prime Video" data-price="10">
+              <span class="service-icon">P</span>
+              <span>
+                <span class="service-name">Prime Video</span>
+                <span class="service-price">R$10,00</span>
+              </span>
+            </label>
+
+            <label class="service-option">
+              <input type="checkbox" class="streaming-check" value="Paramount+" data-price="10">
+              <span class="service-icon">PM</span>
+              <span>
+                <span class="service-name">Paramount+</span>
+                <span class="service-price">R$10,00</span>
+              </span>
+            </label>
+
+            <label class="service-option">
+              <input type="checkbox" class="streaming-check" value="Globoplay" data-price="10">
+              <span class="service-icon">G</span>
+              <span>
+                <span class="service-name">Globoplay</span>
+                <span class="service-price">R$10,00</span>
+              </span>
+            </label>
+
+            <label class="service-option">
+              <input type="checkbox" class="streaming-check" value="Premiere" data-price="10">
+              <span class="service-icon">PR</span>
+              <span>
+                <span class="service-name">Premiere</span>
+                <span class="service-price">R$10,00</span>
+              </span>
+            </label>
+
+            <label class="service-option">
+              <input type="checkbox" class="streaming-check" value="Sportv" data-price="10">
+              <span class="service-icon">S</span>
+              <span>
+                <span class="service-name">Sportv</span>
+                <span class="service-price">R$10,00</span>
+              </span>
+            </label>
+
+            <label class="service-option">
+              <input type="checkbox" class="streaming-check" value="ESPN" data-price="10">
+              <span class="service-icon">E</span>
+              <span>
+                <span class="service-name">ESPN</span>
+                <span class="service-price">R$10,00</span>
+              </span>
+            </label>
+
+            <label class="service-option">
+              <input type="checkbox" class="streaming-check" value="Apple TV" data-price="10">
+              <span class="service-icon">A</span>
+              <span>
+                <span class="service-name">Apple TV</span>
+                <span class="service-price">R$10,00</span>
+              </span>
+            </label>
+          </div>
+          <p class="selection-hint" id="selectionHint">Nenhum streaming selecionado ainda.</p>
 
           <figure class="streaming-showcase" aria-label="Imagem dos streamings inclusos">
             <img src="streaming.png" class="streaming-img" alt="Streamings inclusos no pacote" loading="eager" decoding="async">
@@ -994,29 +1175,46 @@ input[type="email"]:focus {
           <div class="step">
             <span class="step-number">1</span>
             <p class="step-text">
-              <strong>Digite seu e-mail</strong>
-              <span>Use um e-mail ativo para receber as informações da compra.</span>
+              <strong>Escolha o produto</strong>
+              <span>Selecione um ou mais streamings disponíveis por R$10,00 cada.</span>
             </p>
           </div>
 
           <div class="step">
             <span class="step-number">2</span>
             <p class="step-text">
-              <strong>Pague via PIX</strong>
-              <span>Confira o valor e conclua o pagamento com segurança.</span>
+              <strong>Confirme seus dados</strong>
+              <span>Informe o e-mail e aceite os termos para continuar.</span>
             </p>
           </div>
 
           <div class="step">
             <span class="step-number">3</span>
             <p class="step-text">
-              <strong>Aguarde a confirmação</strong>
-              <span>Após a confirmação, acompanhe as instruções pelo e-mail informado.</span>
+              <strong>Pague via PIX</strong>
+              <span>Confira o valor selecionado e conclua o pagamento.</span>
             </p>
           </div>
         </div>
 
+        <div class="checkout-summary" aria-live="polite">
+          <div class="summary-row">
+            <span>Selecionados</span>
+            <strong id="quantidadeSelecionada">0 streaming</strong>
+          </div>
+          <div class="selected-list empty" id="streamingsSelecionadosTexto">
+            Escolha pelo menos um streaming.
+          </div>
+          <div class="summary-row">
+            <span>Total</span>
+            <strong class="summary-total" id="totalPrecoCheckout">R$0,00</strong>
+          </div>
+        </div>
+
         <form class="form-venda" id="meuForm">
+          <input type="hidden" id="streamingsSelecionados" name="streamings">
+          <input type="hidden" id="valorTotalPedido" name="valor_total">
+
           <label class="field-label" for="email_cliente">E-mail para recebimento</label>
           <input
             type="email"
@@ -1210,20 +1408,81 @@ input[type="email"]:focus {
 
 <script>
 const pagamentoUrl = "https://mpago.la/2Lu7nSJ";
+const precoPorStreaming = 10;
 
 const form = document.getElementById("meuForm");
 const emailInput = document.getElementById("email_cliente");
 const btnComprar = document.getElementById("btnComprar");
 const termsInput = document.getElementById("aceite_termos");
+const streamingInputs = Array.from(document.querySelectorAll(".streaming-check"));
+const totalPrecoHero = document.getElementById("totalPrecoHero");
+const totalPrecoCheckout = document.getElementById("totalPrecoCheckout");
+const quantidadeSelecionada = document.getElementById("quantidadeSelecionada");
+const streamingsSelecionadosTexto = document.getElementById("streamingsSelecionadosTexto");
+const selectionHint = document.getElementById("selectionHint");
+const streamingsSelecionadosInput = document.getElementById("streamingsSelecionados");
+const valorTotalPedidoInput = document.getElementById("valorTotalPedido");
+
+function formatarReal(valor) {
+  return valor.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL"
+  });
+}
+
+function obterSelecionados() {
+  return streamingInputs
+    .filter((input) => input.checked)
+    .map((input) => ({
+      nome: input.value,
+      preco: Number(input.dataset.price || precoPorStreaming)
+    }));
+}
+
+function atualizarResumoPedido() {
+  streamingInputs.forEach((input) => {
+    input.closest(".service-option").classList.toggle("is-selected", input.checked);
+  });
+
+  const selecionados = obterSelecionados();
+  const total = selecionados.reduce((soma, item) => soma + item.preco, 0);
+  const nomes = selecionados.map((item) => item.nome);
+  const quantidadeTexto = selecionados.length === 1 ? "1 streaming" : `${selecionados.length} streamings`;
+
+  totalPrecoHero.textContent = formatarReal(total);
+  totalPrecoCheckout.textContent = formatarReal(total);
+  quantidadeSelecionada.textContent = quantidadeTexto;
+  streamingsSelecionadosInput.value = nomes.join(", ");
+  valorTotalPedidoInput.value = total.toFixed(2);
+
+  if (selecionados.length === 0) {
+    streamingsSelecionadosTexto.textContent = "Escolha pelo menos um streaming.";
+    streamingsSelecionadosTexto.classList.add("empty");
+    selectionHint.textContent = "Nenhum streaming selecionado ainda.";
+    return;
+  }
+
+  streamingsSelecionadosTexto.textContent = nomes.join(", ");
+  streamingsSelecionadosTexto.classList.remove("empty");
+  selectionHint.textContent = `${quantidadeTexto} selecionado(s). Total: ${formatarReal(total)}.`;
+}
 
 termsInput.addEventListener("change", function() {
   btnComprar.disabled = !termsInput.checked;
 });
 
+streamingInputs.forEach((input) => {
+  input.addEventListener("change", atualizarResumoPedido);
+});
+
+atualizarResumoPedido();
+
 form.addEventListener("submit", function(e) {
   e.preventDefault();
 
   const email = emailInput.value.trim();
+  const selecionados = obterSelecionados();
+  const total = selecionados.reduce((soma, item) => soma + item.preco, 0);
 
   if (!email || !emailInput.checkValidity()) {
     emailInput.focus();
@@ -1237,7 +1496,18 @@ form.addEventListener("submit", function(e) {
     return;
   }
 
+  if (selecionados.length === 0) {
+    alert("Escolha pelo menos um streaming antes de continuar.");
+    document.getElementById("listaStreamings").scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+    return;
+  }
+
   sessionStorage.setItem("m7store_email", email);
+  sessionStorage.setItem("m7store_streamings", selecionados.map((item) => item.nome).join(", "));
+  sessionStorage.setItem("m7store_total", total.toFixed(2));
 
   btnComprar.disabled = true;
   btnComprar.textContent = "Redirecionando para o PIX...";
