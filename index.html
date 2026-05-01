@@ -462,6 +462,42 @@ input[type="email"]:focus {
   line-height: 1.35;
 }
 
+.terms-accept {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 9px;
+  align-items: start;
+  padding: 11px;
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  border-radius: 10px;
+  background: var(--panel-2);
+}
+
+.terms-accept input {
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  accent-color: var(--gold);
+}
+
+.terms-accept span {
+  color: #efefef;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.terms-accept a,
+.legal-links a {
+  color: var(--gold-light);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.terms-accept a:hover,
+.legal-links a:hover {
+  text-decoration: underline;
+}
+
 .btn {
   width: 100%;
   min-height: 52px;
@@ -485,8 +521,8 @@ input[type="email"]:focus {
 }
 
 .btn:disabled {
-  opacity: 0.78;
-  cursor: wait;
+  opacity: 0.55;
+  cursor: not-allowed;
 }
 
 .security {
@@ -573,6 +609,45 @@ input[type="email"]:focus {
   margin-top: 16px;
 }
 
+.content-card {
+  margin-top: 16px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--panel);
+  box-shadow: 0 0 16px rgba(212, 175, 55, 0.12);
+}
+
+.about-text {
+  display: grid;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.about-highlight {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.about-highlight span {
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px;
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  border-radius: 10px;
+  background: var(--panel-2);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  text-align: center;
+}
+
 .info-card {
   padding: 16px;
   border: 1px solid var(--line-soft);
@@ -627,12 +702,59 @@ input[type="email"]:focus {
   line-height: 1.42;
 }
 
+.terms-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.terms-item {
+  padding: 13px;
+  border: 1px solid var(--line-soft);
+  border-radius: 12px;
+  background: var(--panel-2);
+}
+
+.terms-item strong {
+  display: block;
+  margin-bottom: 6px;
+  color: #fff;
+  font-size: 13px;
+}
+
+.terms-item p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.42;
+}
+
+.privacy-box {
+  margin-top: 12px;
+  padding: 13px;
+  border: 1px solid rgba(50, 188, 173, 0.3);
+  border-radius: 12px;
+  background: rgba(50, 188, 173, 0.08);
+  color: #eafffc;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
 .legal {
   margin-top: 14px;
   color: var(--subtle);
   font-size: 10px;
   line-height: 1.35;
   text-align: center;
+}
+
+.legal-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 11px;
 }
 
 @media (max-width: 960px) {
@@ -645,6 +767,11 @@ input[type="email"]:focus {
   }
 
   .grid-section {
+    grid-template-columns: 1fr;
+  }
+
+  .about-highlight,
+  .terms-grid {
     grid-template-columns: 1fr;
   }
 
@@ -675,6 +802,7 @@ input[type="email"]:focus {
 
   .offer,
   .checkout,
+  .content-card,
   .reviews,
   .faq {
     padding: 14px;
@@ -900,11 +1028,19 @@ input[type="email"]:focus {
             required
           >
 
-          <p class="email-note">
-            Ao continuar, você confirma que deseja ser redirecionado para o pagamento via PIX.
-          </p>
+        <p class="email-note">
+          Ao continuar, você confirma que deseja ser redirecionado para o pagamento via PIX.
+        </p>
 
-          <button type="submit" class="btn" id="btnComprar">
+          <label class="terms-accept" for="aceite_termos">
+            <input type="checkbox" id="aceite_termos" required>
+            <span>
+              Li e aceito os <a href="#termos-uso">Termos de Uso</a> e a
+              <a href="#politica-privacidade">Política de Privacidade</a>.
+            </span>
+          </label>
+
+          <button type="submit" class="btn" id="btnComprar" disabled>
             Continuar para o PIX
           </button>
         </form>
@@ -916,7 +1052,34 @@ input[type="email"]:focus {
         <p class="legal">
           As marcas citadas pertencem aos seus respectivos proprietários. Utilize esta página apenas para ofertas autorizadas e em conformidade com os termos dos serviços.
         </p>
+
+        <div class="legal-links">
+          <a href="#sobre-nos">Sobre nós</a>
+          <a href="#termos-uso">Termos de Uso</a>
+          <a href="#politica-privacidade">Política de Privacidade</a>
+        </div>
       </aside>
+    </section>
+
+    <section class="content-card" id="sobre-nos" aria-labelledby="titulo-sobre">
+      <p class="section-title" id="titulo-sobre">Sobre nós</p>
+      <div class="about-text">
+        <p>
+          A M7 Store é uma plataforma digital fundada em 2024, especializada na venda de acessos a serviços de streaming e produtos digitais relacionados à tecnologia.
+        </p>
+        <p>
+          Nosso objetivo é oferecer praticidade, economia e agilidade. Após a confirmação do pagamento, as informações de acesso são organizadas e enviadas de forma rápida para o cliente.
+        </p>
+        <p>
+          Trabalhamos com foco em segurança e privacidade, seguindo boas práticas de proteção de dados para que as informações dos clientes sejam tratadas com confidencialidade.
+        </p>
+      </div>
+
+      <div class="about-highlight" aria-label="Diferenciais da M7 Store">
+        <span>Fundada em 2024</span>
+        <span>Processo digital e rápido</span>
+        <span>Suporte direto ao cliente</span>
+      </div>
     </section>
 
     <section class="grid-section" aria-label="Benefícios">
@@ -986,6 +1149,62 @@ input[type="email"]:focus {
         </div>
       </div>
     </section>
+
+    <section class="content-card" id="termos-uso" aria-labelledby="titulo-termos">
+      <p class="section-title" id="titulo-termos">Termos de Uso</p>
+
+      <div class="terms-grid">
+        <div class="terms-item">
+          <strong>1. Sobre o serviço</strong>
+          <p>A M7 Store é uma plataforma digital especializada na venda de acessos a serviços de streaming e produtos digitais.</p>
+        </div>
+
+        <div class="terms-item">
+          <strong>2. Pagamento</strong>
+          <p>Os pagamentos são realizados via PIX. Após a confirmação pela instituição financeira, o pedido é processado.</p>
+        </div>
+
+        <div class="terms-item">
+          <strong>3. Entrega</strong>
+          <p>As informações adquiridas são enviadas para o e-mail informado. O envio pode ocorrer imediatamente ou em alguns minutos.</p>
+        </div>
+
+        <div class="terms-item">
+          <strong>4. Dados do cliente</strong>
+          <p>O cliente é responsável por informar corretamente o e-mail. Erros de digitação podem impedir a entrega do produto.</p>
+        </div>
+
+        <div class="terms-item">
+          <strong>5. Limitação</strong>
+          <p>A M7 Store atua como fornecedora de produtos digitais e não possui vínculo direto com as plataformas mencionadas.</p>
+        </div>
+
+        <div class="terms-item">
+          <strong>6. Instabilidades</strong>
+          <p>Alterações, instabilidades ou bloqueios nos serviços podem ocorrer sem aviso prévio, conforme regras das plataformas.</p>
+        </div>
+
+        <div class="terms-item">
+          <strong>7. Reembolso</strong>
+          <p>Por se tratar de produto digital, não há reembolso após o envio das informações, salvo em caso de falha comprovada na entrega.</p>
+        </div>
+
+        <div class="terms-item">
+          <strong>8. Suporte</strong>
+          <p>Em caso de dúvidas ou problemas, o cliente deve entrar em contato pelo canal de atendimento disponibilizado.</p>
+        </div>
+
+        <div class="terms-item">
+          <strong>9. Alterações</strong>
+          <p>A M7 Store pode alterar estes termos a qualquer momento para melhorar a clareza, segurança e operação do serviço.</p>
+        </div>
+      </div>
+
+      <div class="privacy-box" id="politica-privacidade">
+        <strong>Política de Privacidade:</strong>
+        os dados fornecidos são utilizados exclusivamente para processamento da compra, confirmação do pagamento, suporte e envio do produto digital. As informações são tratadas com confidencialidade e segurança.
+      </div>
+    </section>
   </div>
 </main>
 
@@ -995,6 +1214,11 @@ const pagamentoUrl = "https://mpago.la/2Lu7nSJ";
 const form = document.getElementById("meuForm");
 const emailInput = document.getElementById("email_cliente");
 const btnComprar = document.getElementById("btnComprar");
+const termsInput = document.getElementById("aceite_termos");
+
+termsInput.addEventListener("change", function() {
+  btnComprar.disabled = !termsInput.checked;
+});
 
 form.addEventListener("submit", function(e) {
   e.preventDefault();
@@ -1004,6 +1228,12 @@ form.addEventListener("submit", function(e) {
   if (!email || !emailInput.checkValidity()) {
     emailInput.focus();
     alert("Digite um e-mail válido para continuar.");
+    return;
+  }
+
+  if (!termsInput.checked) {
+    termsInput.focus();
+    alert("Você precisa aceitar os Termos de Uso e a Política de Privacidade para continuar.");
     return;
   }
 
