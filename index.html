@@ -109,11 +109,37 @@ body::before {
   margin-bottom: 18px;
 }
 
+.brand-logo {
+  width: 74px;
+  height: 74px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border: 1px solid rgba(212, 175, 55, 0.58);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 25%, rgba(255, 243, 176, 0.24), transparent 34%),
+    linear-gradient(145deg, #070707, #1a1506 55%, #060606);
+  box-shadow:
+    inset 0 0 16px rgba(212, 175, 55, 0.16),
+    0 0 14px rgba(242, 207, 99, 0.34);
+  overflow: hidden;
+}
+
 .logo {
   width: 70px;
   height: 70px;
   object-fit: contain;
   filter: drop-shadow(0 0 10px rgba(242, 207, 99, 0.55));
+}
+
+.logo-fallback {
+  display: none;
+  color: var(--gold-soft);
+  font-size: 22px;
+  line-height: 1;
+  font-weight: 900;
+  text-shadow: 0 0 10px rgba(242, 207, 99, 0.7);
 }
 
 .brand-text {
@@ -186,7 +212,7 @@ h1 {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 8px;
-  margin-bottom: 18px;
+  margin-bottom: 12px;
   list-style: none;
 }
 
@@ -203,6 +229,30 @@ h1 {
   font-size: 13px;
   line-height: 1.15;
   text-align: center;
+}
+
+.streaming-showcase {
+  min-height: clamp(190px, 24vw, 250px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 18px;
+  padding: 14px;
+  border: 1px solid rgba(212, 175, 55, 0.34);
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at center, rgba(212, 175, 55, 0.12), transparent 58%),
+    linear-gradient(135deg, rgba(255,255,255,0.055), rgba(0,0,0,0.22));
+  overflow: hidden;
+}
+
+.streaming-img {
+  width: 100%;
+  height: 100%;
+  max-height: 230px;
+  display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 0 14px rgba(212, 175, 55, 0.22));
 }
 
 .details {
@@ -459,10 +509,19 @@ input[type="email"]:focus {
     margin-bottom: 12px;
   }
 
+  .brand-logo {
+    width: 62px;
+    height: 62px;
+  }
+
   .logo {
     width: 58px;
     height: 58px;
     filter: none;
+  }
+
+  .logo-fallback {
+    font-size: 20px;
   }
 
   .lead {
@@ -488,6 +547,16 @@ input[type="email"]:focus {
   .service {
     min-height: 30px;
     font-size: 12px;
+  }
+
+  .streaming-showcase {
+    min-height: 160px;
+    padding: 10px;
+    margin-bottom: 14px;
+  }
+
+  .streaming-img {
+    max-height: 150px;
   }
 
   .details {
@@ -520,6 +589,14 @@ input[type="email"]:focus {
   .details {
     display: none;
   }
+
+  .streaming-showcase {
+    min-height: 130px;
+  }
+
+  .streaming-img {
+    max-height: 120px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -540,7 +617,17 @@ input[type="email"]:focus {
     <section class="panel" aria-labelledby="titulo-oferta">
       <div>
         <div class="brand">
-          <img src="logo.png" class="logo" alt="Logo M7 Store" loading="eager" decoding="async">
+          <div class="brand-logo" aria-hidden="true">
+            <img
+              src="logo.png"
+              class="logo"
+              alt=""
+              loading="eager"
+              decoding="async"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+            >
+            <span class="logo-fallback">M7</span>
+          </div>
 
           <div class="brand-text">
             <p class="eyebrow">Oferta digital com pagamento via PIX</p>
@@ -570,6 +657,10 @@ input[type="email"]:focus {
           <li class="service">ESPN</li>
           <li class="service">Apple TV</li>
         </ul>
+
+        <figure class="streaming-showcase" aria-label="Imagem dos streamings inclusos">
+          <img src="streaming.png" class="streaming-img" alt="Streamings inclusos no pacote" loading="eager" decoding="async">
+        </figure>
       </div>
 
       <div>
